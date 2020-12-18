@@ -1,0 +1,183 @@
+<!-- Blocks -->
+
+<div class="">
+    <h1 class="centered main-title mx-auto">Shipment history</h1>
+<!-- First block -->
+    <div class="timeline" ng-repeat="data in datas | orderBy: 'eventDateTime' " ng-hide="data.eventPosition.status == 'DELIVERED'">
+        <div class="{{timeClass(data)}}">
+            <div class="timeline-item">
+                <div class="row">
+                    <div class="col-lg-4 date-block">
+                        <p class="time">
+                            <span class="date-mobile">{{ data.eventDateTime | date: formatDate}}{{nth(data)}} <br></span> 
+                            {{ data.eventDateTime | date: formatTime}}                             
+                        </p>
+                    </div>
+                    <div class="col-lg-2 date-block" >
+                        <p class="date">
+                            {{ data.eventDateTime | date: formatDate}}{{nth(data)}}
+                        </p>
+                    </div>
+                    <!-- Mob date -->
+                    <!-- <span class="dateMobSpan">
+                        {{ data.eventDateTime | date: formatDate}}{{nth(data)}}
+                    </span> -->
+                    <!-- Circles -->
+                    <div ng-switch on="data.eventPosition.status">
+                        <!-- delivered -->
+                        <div class="iconCircle position-relative" ng-switch-when="DELIVERED">
+                            <img class="checkIcon" src="content/img/check.svg">
+                        </div>
+                        <!-- arrived -->
+                        <div class="iconCircle position-relative" ng-switch-when="ARRIVED AT YOUR PLACE">
+                            <img class="mapIcon" src="content/img/map-pin.svg">
+                        </div>
+                        <!-- default -->
+                        <div class="{{middleClass(data)}} position-relative" ng-switch-default></div>
+                    </div>
+                    <div class="content col-lg-6">
+                        <div class="row">
+                            <div class="col-lg-7">
+                                <span class="title"> {{data.eventPosition.status}} </span>
+                            </div>
+                            <div class="col-lg-5">
+                                <span class="state float-right">{{data.eventPosition.country}}, {{data.eventPosition.state}}</span> 
+                            </div>
+                        </div>
+                        <p ng-hide="data.eventPosition.comments == 'null'">
+                            {{data.eventPosition.comments}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- last iter || second block -->
+    <div class="timeline" ng-repeat="data in datas | orderBy: 'eventDateTime'" ng-show="data.eventPosition.status == 'DELIVERED'">
+        <div class="timeline-body3">
+            <div class="timeline-item">
+                <div class="row">
+                    <div class="col-lg-4 date-block">
+                        <p class="time">
+                            <span class="date-mobile">{{ data.eventDateTime | date: formatDate}}{{nth(data)}} <br></span> 
+                            {{ data.eventDateTime | date: formatTime}}
+                        </p>
+                    </div>
+                    <div class="col-lg-2 date-block">
+                        <p class="date" >
+                            {{ data.eventDateTime | date: formatDate}}{{nth(data)}}
+                        </p>
+                    </div>
+                    <!-- <div class="col-sm-12 date-block-mob">
+                        <p class="date-mob" >
+                            {{ data.eventDateTime | date: formatDate}}{{nth(data)}}
+                        </p>
+                    </div>
+                    <div class="col-sm-12 time-block-mob">
+                        <p class="time-mob">
+                            {{ data.eventDateTime | date: formatTime}}
+                        </p>
+                    </div> -->
+                    <div ng-switch on="data.eventPosition.status">
+                        <!-- delivered -->
+                        <div class="iconCircle position-relative" ng-switch-when="DELIVERED">
+                            <img class="checkIcon" src="content/img/check.svg">
+                        </div>
+                        <!-- arrived -->
+                        <div class="iconCircle position-relative" ng-switch-when="ARRIVED AT YOUR PLACE">
+                            <img class="mapIcon" src="content/img/map-pin.svg">
+                        </div>
+                        <!-- default -->
+                        <div class="middleIconCircle position-relative" ng-switch-default></div>
+                    </div>
+                    <div class="content col-lg-6">
+                        <div class="row">
+                            <div class="col-lg-7">
+                                <span class="title"> {{data.eventPosition.status}} </span>
+                            </div>
+                            <div class="col-lg-5">
+                                <span class="state float-right">{{data.eventPosition.country}}, {{data.eventPosition.state}}</span> 
+                            </div>
+                        </div>
+                        <p ng-hide="data.eventPosition.comments == 'null'">
+                            {{data.eventPosition.comments}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <!-- In progress block-->
+    <!-- <div class="timeline">
+        <div class="timeline-body">
+            <div class="timeline-item">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <p class="time">
+                            12:15pm
+                        </p>
+                    </div>
+                    <div class="col-lg-2">
+                        <p class="date ">
+                            May 24th
+                        </p>
+                    </div>
+                    <div class="middleIconCircle position-relative"></div>
+                    <div class="content col-lg-6">
+                        <div class="row">
+                            <div class="col-lg-7">
+                                <span class="title">Title For the section</span>
+                            </div>
+                            <div class="col-lg-5">
+                                <span class="state float-right">OMAHA, NE</span> 
+                            </div>
+                        </div>
+                        <p>
+                            Lorem 
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+    <!-- <div class="timeline">
+        <div class="timeline-body">
+            <div class="timeline-item">
+                <p class="time">Aug 30</p>
+                <div class="middleIconCircle position-relative">
+                </div>
+                <div class="content">
+                    <h2>Title For the section</h2>
+                    <p>
+                        Lorem ipsum dolor sit amet sectetur. this is a simple fill text
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div> -->
+</div>
+
+
+<!-- <div class="timeline">
+    <div class="timeline-body">
+        <div class="timeline-item">
+            <p class="timeMiddle">Aug 30</p>
+            <div class="IconCircleMiddle position-relative">
+                <img class="checkIconMiddle" src="content/img/check.svg">
+            </div>
+            <div class="contentMiddle">
+                <h2>Title For the section</h2>
+                <p>
+                    Lorem ipsum dolor sit amet sectetur. this is a simple fill text
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                </p>
+            </div>
+        </div>
+    </div>
+</div> -->
+
